@@ -71,4 +71,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
  - DOB only allow numbers
  - Beautification
  - 5paisa logo
- - Any other disclaimers
+ - Any other disclaimers in the footer
