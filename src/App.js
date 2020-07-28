@@ -5,7 +5,7 @@ import { Button, Layout, Input, Card, Typography } from 'antd';
 import './App.css';
 
 const { Content, Header } = Layout;
-const { Text, Title } = Typography;
+const { Text, Title, Link } = Typography;
 
 function Results(props) {
 
@@ -106,6 +106,7 @@ function App() {
       <Header><Text style={{ textAlign: "center", color: "white" }}>
         5paisa Encryptor</Text></Header>
       <Title level={4} style={{ textAlign: "center" }}>This app is 100% client side and <b>does not</b> store any credentials.</Title>
+      <Text strong style={{ textAlign: "center" }}>Get your API keys from <Link href="https://www.5paisa.com/developerapi/apikeys" target="_blank">here</Link></Text>
       <div style={{
         position: 'absolute', left: '50%', top: '50%',
         transform: 'translate(-50%, -50%)'
