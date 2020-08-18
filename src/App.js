@@ -4,8 +4,8 @@ import { Button, Layout, Input, Card, Typography } from 'antd';
 
 import './App.css';
 
-const { Content, Header } = Layout;
-const { Text, Title, Link } = Typography;
+const { Content } = Layout;
+const { Text } = Typography;
 
 function Results(props) {
 
@@ -74,14 +74,14 @@ class MainComponent extends React.Component {
               onKeyPress={event => { if (event.key === "Enter" && this.state.encryptionKey !== null) this.updateResults() }}>
 
             </Input>
-            <Input size="medium" placeholder="Enter your email" onChange={this.updateEmail}
+            <Input size="large" placeholder="Enter your email" onChange={this.updateEmail}
               onKeyPress={event => { if (event.key === "Enter" && this.state.Email !== null) this.updateResults() }}>
             </Input>
-            <Input.Password size="medium" placeholder="Enter your password" onChange={this.updatePassword}
+            <Input.Password size="large" placeholder="Enter your password" onChange={this.updatePassword}
               onKeyPress={event => { if (event.key === "Enter" && this.state.Password !== null) this.updateResults() }}>
 
             </Input.Password>
-            <Input size="medium" placeholder="Enter your DOB in YYYYMMDD" onChange={this.updateDOB} maxLength={8}
+            <Input size="large" placeholder="Enter your DOB in YYYYMMDD" onChange={this.updateDOB} maxLength={8}
               onKeyPress={event => { if (event.key === "Enter" && this.state.DOB !== null) this.updateResults() }}>
 
             </Input>
@@ -102,11 +102,6 @@ class MainComponent extends React.Component {
 function App() {
   return (
     <Layout>
-
-      <Header><Text style={{ textAlign: "center", color: "white" }}>
-        5paisa Encryptor</Text></Header>
-      <Title level={4} style={{ textAlign: "center" }}>This app is 100% client side and <b>does not</b> store any credentials.</Title>
-      <Text strong style={{ textAlign: "center" }}>Get your API keys from <Link href="https://www.5paisa.com/developerapi/apikeys" target="_blank">here</Link></Text>
       <div style={{
         position: 'absolute', left: '50%', top: '50%',
         transform: 'translate(-50%, -50%)'
