@@ -1,6 +1,6 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import { Button, Layout, Input, Card, Typography, message } from 'antd';
+import { Button, Layout, Input, Card, Typography, message, Row, Col, Divider } from 'antd';
 
 import './App.css';
 
@@ -12,12 +12,20 @@ function Results(props) {
   return (
     <Content>
       <Card>
-        Encrypted Email<br />
-        <Text copyable strong>{props.encryptedEmail}</Text><br />
-              Encrypted Password<br />
-        <Text copyable strong>{props.encryptedPassword}</Text><br />
-              Encrypted DOB<br />
-        <Text copyable strong>{props.encryptedDOB}</Text><br />
+        <Row>
+          <Col span={12} style={{ textAlign: "left" }}><Text strong style={{ textAlign: "left" }}>Encrypted Email</Text></Col>
+          <Col span={12} style={{ textAlign: "right" }}><Text copyable>{props.encryptedEmail}</Text></Col>
+        </Row>
+        <Divider />
+        <Row>
+          <Col span={12} style={{ textAlign: "left" }}><Text strong style={{ textAlign: "left" }}>Encrypted Password</Text></Col>
+          <Col span={12} style={{ textAlign: "right" }}><Text copyable>{props.encryptedPassword}</Text></Col>
+        </Row>
+        <Divider />
+        <Row>
+          <Col span={12} style={{ textAlign: "left" }}><Text strong style={{ encryptedDOB: "left" }}>Encrypted DOB</Text></Col>
+          <Col span={12} style={{ textAlign: "right" }}><Text copyable>{props.encryptedDOB}</Text></Col>
+        </Row>
       </Card>
     </Content>
   )
