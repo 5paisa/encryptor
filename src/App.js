@@ -1,6 +1,6 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import { Button, Layout, Input, Card, Typography } from 'antd';
+import { Button, Layout, Input, Card, Typography, message } from 'antd';
 
 import './App.css';
 
@@ -34,13 +34,18 @@ class MainComponent extends React.Component {
   }
 
   updateResults = () => {
-    this.setState({ showResults: true })
-    const encryptedEmail = encrypt(this.state.Email, this.state.encryptionKey)
-    const encryptedPassword = encrypt(this.state.Password, this.state.encryptionKey)
-    const encryptedDOB = encrypt(this.state.DOB, this.state.encryptionKey)
-    this.setState({ encryptedEmail: encryptedEmail })
-    this.setState({ encryptedPassword: encryptedPassword })
-    this.setState({ encryptedDOB: encryptedDOB })
+    if (this.state.encryptionKey === null) {
+      message.error("Please provide the encryption key", 1.5)
+    }
+    else {
+      this.setState({ showResults: true })
+      const encryptedEmail = encrypt(this.state.Email, this.state.encryptionKey)
+      const encryptedPassword = encrypt(this.state.Password, this.state.encryptionKey)
+      const encryptedDOB = encrypt(this.state.DOB, this.state.encryptionKey)
+      this.setState({ encryptedEmail: encryptedEmail })
+      this.setState({ encryptedPassword: encryptedPassword })
+      this.setState({ encryptedDOB: encryptedDOB })
+    }
 
   }
 
@@ -85,7 +90,7 @@ class MainComponent extends React.Component {
               onKeyPress={event => { if (event.key === "Enter" && this.state.DOB !== null) this.updateResults() }}>
 
             </Input>
-            <Button onClick={this.updateResults} >Encrypt</Button>
+            <Button onClick={this.updateResults} style={{ backgroundColor: "#6699cc" }} > <Text strong style={{ color: "#fafafa" }}>Encrypt</Text></Button>
           </Content>
         </Layout>
         <Layout>
