@@ -33,20 +33,37 @@ class MainComponent extends React.Component {
     }
   }
 
-  updateResults = () => {
-    if (this.state.encryptionKey === null) {
-      message.error("Please provide the encryption key", 1.5)
+  isEmpty = (text) => {
+    if (text === null || text === "") {
+      return true
     }
-    else {
-      this.setState({ showResults: true })
+    return false
+  }
+
+  updateResults = () => {
+    if (this.isEmpty(this.state.encryptionKey)) {
+      message.error("Please provide encryption key", 1.5)
+      this.setState({ showResults: false })
+      return
+    }
+    if (this.isEmpty(this.state.Email) && this.isEmpty(this.state.Password) && this.isEmpty(this.state.DOB)) {
+      message.error("Please provide something to encrypt", 1.5)
+      this.setState({ showResults: false })
+      return
+    }
+    if (!this.isEmpty(this.state.Email)) {
       const encryptedEmail = encrypt(this.state.Email, this.state.encryptionKey)
-      const encryptedPassword = encrypt(this.state.Password, this.state.encryptionKey)
-      const encryptedDOB = encrypt(this.state.DOB, this.state.encryptionKey)
       this.setState({ encryptedEmail: encryptedEmail })
+    }
+    if (!this.isEmpty(this.state.Password)) {
+      const encryptedPassword = encrypt(this.state.Password, this.state.encryptionKey)
       this.setState({ encryptedPassword: encryptedPassword })
+    }
+    if (!this.isEmpty(this.state.DOB)) {
+      const encryptedDOB = encrypt(this.state.DOB, this.state.encryptionKey)
       this.setState({ encryptedDOB: encryptedDOB })
     }
-
+    this.setState({ showResults: true })
   }
 
   updateEncryptionKey = (event) => {
