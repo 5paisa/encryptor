@@ -48,6 +48,10 @@ class MainComponent extends React.Component {
     return false
   }
 
+  isValidEmail = () => {
+    return /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/.test(this.state.Email)
+  }
+
   updateResults = () => {
     if (this.isEmpty(this.state.encryptionKey)) {
       message.error("Please provide encryption key", 1.5)
@@ -57,6 +61,10 @@ class MainComponent extends React.Component {
     if (this.isEmpty(this.state.Email) && this.isEmpty(this.state.Password) && this.isEmpty(this.state.DOB)) {
       message.error("Please provide something to encrypt", 1.5)
       this.setState({ showResults: false })
+      return
+    }
+    if (!this.isValidEmail()) {
+      message.error("Please provide a valid email address")
       return
     }
     if (!this.isEmpty(this.state.Email)) {
@@ -87,7 +95,13 @@ class MainComponent extends React.Component {
   }
 
   updateDOB = (event) => {
-    this.setState({ DOB: event.target.value })
+    if (!Number(event.target.value)) {
+      message.error("Only numbers allowed")
+      this.setState({ DOB: "" })
+    }
+    else (
+      this.setState({ DOB: event.target.value })
+    )
   }
 
   render() {
@@ -111,7 +125,7 @@ class MainComponent extends React.Component {
               onKeyPress={event => { if (event.key === "Enter" && this.state.Password !== null) this.updateResults() }}>
 
             </Input.Password>
-            <Input size="large" placeholder="Enter your DOB in YYYYMMDD" onChange={this.updateDOB} maxLength={8}
+            <Input size="large" placeholder="Enter your DOB in YYYYMMDD" onChange={this.updateDOB} value={this.state.DOB} maxLength={8}
               onKeyPress={event => { if (event.key === "Enter" && this.state.DOB !== null) this.updateResults() }}>
 
             </Input>
