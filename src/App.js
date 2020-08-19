@@ -96,7 +96,7 @@ class MainComponent extends React.Component {
 
   updateDOB = (event) => {
     if (!Number(event.target.value)) {
-      message.error("Only numbers allowed")
+      message.error("Only numbers allowed", 0.5)
       this.setState({ DOB: "" })
     }
     else (
